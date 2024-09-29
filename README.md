@@ -36,7 +36,9 @@ No rocket science here. The esp32 is connected to a relay using gpio in order to
 operate the 12v based magnetic lock. A
 [wiegand](https://en.wikipedia.org/wiki/Wiegand_interface) keypad is also
 connected to the esp32 using 2 gpio ports. A 12v PSU with an external 12V
-battery was added for continuous operation in a face of a power outage.
+battery was added for continuous operation in face of a power outage.
+More information, schematics, and PCB design can be found on the
+[doorsys-hardware](/fabiojmendes/doorsys-hardware) repository.
 
 Block diagram:
 
