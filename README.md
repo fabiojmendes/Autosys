@@ -4,6 +4,10 @@
 
 Various automation related projects using rust.
 
+## Architecture
+
+![Architecture Diagram](assets/architecture.svg)
+
 ## Doorsys
 
 [Doorsys](/DOORSYS.md) is a door access control system with centralized
