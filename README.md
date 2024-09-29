@@ -2,7 +2,8 @@
 
 # Autosys
 
-Various automation related projects using rust.
+Various automation related IoT projects using rust that communicate using
+primarily mqtt.
 
 ## Architecture
 
@@ -28,7 +29,8 @@ hardware necessary was readily available online and an esp32 microcontroller
 would be more than enough to run the firmware. I started the development of the
 firmware using C and the official
 [esp-idf](https://github.com/espressif/esp-idf) but later on switched to the
-experimental but now highly capable rust [esp-rs](https://github.com/esp-rs).
+experimental but now highly capable rust [esp-rs](https://github.com/esp-rs)
+implementation.
 
 ### Hardware Description
 
@@ -66,8 +68,11 @@ protobuf could be an option.
 
 The [doorsys-api](https://github.com/fabiojmendes/doorsys-api) repository
 contains the code for a [axum](https://github.com/tokio-rs/axum) based rest api
-that communicates with the firmware through mqtt messages. For persistence,
-[sqlx](https://github.com/launchbadge/sqlx) and postgres are used.
+for the admin interface. The communication with the doorsys devices is carried
+through mqtt for more reliability. The At-Least-Once (QoS 1) semantics of the protocol
+is used to ensure messages are delivered even if components are offline. To deal
+with message duplication, the consumers of the messages are idempotent.
+For persistence, [sqlx](https://github.com/launchbadge/sqlx) and postgres are used.
 
 The [doorsys-web](https://github.com/fabiojmendes/doorsys-web) repository
 contains the admin interface for interacting with the API. It is a simple UI
@@ -83,5 +88,5 @@ instance while a grafana dashboard was setup for visualization.
 
 ## Tempsys
 
-[Tempsys](/TEMPSYS.md) is a temperature monitoring system designed to work with
-commercial fridges and freezers
+Tempsys is a temperature monitoring system designed to work with commercial
+fridges and freezers
