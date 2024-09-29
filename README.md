@@ -38,7 +38,7 @@ operate the 12v based magnetic lock. A
 connected to the esp32 using 2 gpio ports. A 12v PSU with an external 12V
 battery was added for continuous operation in face of a power outage.
 More information, schematics, and PCB design can be found on the
-[doorsys-hardware](/fabiojmendes/doorsys-hardware) repository.
+[doorsys-hardware](https://github.com/fabiojmendes/doorsys-hardware) repository.
 
 Block diagram:
 
