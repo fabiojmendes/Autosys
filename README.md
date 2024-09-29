@@ -36,13 +36,50 @@ No rocket science here. The esp32 is connected to a relay using gpio in order to
 operate the 12v based magnetic lock. A
 [wiegand](https://en.wikipedia.org/wiki/Wiegand_interface) keypad is also
 connected to the esp32 using 2 gpio ports. A 12v PSU with an external 12V
-battery was added for continuous operation in face of a power outage.
-More information, schematics, and PCB design can be found on the
+battery was added for continuous operation in face of a power outage.  More
+information, schematics, and PCB design can be found on the
 [doorsys-hardware](https://github.com/fabiojmendes/doorsys-hardware) repository.
 
 Block diagram:
 
 ![Doorsys Block Diagram](assets/doorsys-block.svg)
+
+### Software Overview
+
+The software stack is decomposed in a few components. The
+[doorsys-firmware](https://github.com/fabiojmendes/doorsys-firmware) repository
+contains the firmware code which is responsible for:
+
+- Interface with the wiegand keypad for user input.
+- Activate the relay to open the door circuit.
+- Send mqtt audit messages for any door user interaction. Successful or not.
+- Receive mqtt messages for new or removed user codes and store them locally in flash.
+- Send metrics of the current operation (heap and flash size) for observability purposes.
+
+The [doorsys-protocol](https://github.com/fabiojmendes/doorsys-protocol)
+repository contains the protocol messages exchanged between the firmware and the
+api. I went for a very simple approach here using
+[postcard](https://github.com/jamesmunns/postcard) to serialize the messages.
+But not much was done in terms of backwards compatibility and schema evolution.
+For now things are very simple and stable, but when the time comes perhaps
+protobuf could be an option.
+
+The [doorsys-api](https://github.com/fabiojmendes/doorsys-api) repository
+contains the code for a [axum](https://github.com/tokio-rs/axum) based rest api
+that communicates with the firmware through mqtt messages. For persistence,
+[sqlx](https://github.com/launchbadge/sqlx) and postgres are used.
+
+The [doorsys-web](https://github.com/fabiojmendes/doorsys-web) repository
+contains the admin interface for interacting with the API. It is a simple UI
+using vuejs with bootstrap css. Just a console where you can add and
+remove users, generate new pins, deactivate accounts or check the audit logs.
+
+For observability, the firmware will constantly report heap and flash usage
+using mqtt messages using the [InfluxDB line protocol](https://docs.influxdata.com/influxdb/v1/write_protocols/line_protocol_tutorial/)
+format. Telegraf is used to consume those messages and write to the InfluxDB
+instance while a grafana dashboard was setup for visualization.
+
+![Doorsys Dashboard](assets/doorsys-dashboard.png)
 
 ## Tempsys
 
