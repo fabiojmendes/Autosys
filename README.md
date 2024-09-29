@@ -86,6 +86,13 @@ instance while a grafana dashboard was setup for visualization.
 
 ![Doorsys Dashboard](assets/doorsys-dashboard.png)
 
+### Deployment
+
+The firmware has to be flashed straight to the device. The repo has more
+instructions on how to do this.
+Container images are provided for the api and web components which
+can then be deployed using docker or podman.
+
 ## Tempsys
 
 Tempsys is a temperature monitoring system designed to work with commercial
