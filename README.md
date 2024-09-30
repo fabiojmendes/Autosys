@@ -2,8 +2,8 @@
 
 # Autosys
 
-Various automation related IoT projects using rust that communicate using
-primarily mqtt.
+Various automation related IoT projects using rust that communicate primarily
+using mqtt.
 
 ## Architecture
 
@@ -15,7 +15,7 @@ Doorsys is a door access control system with centralized management and logs.
 
 ### Introduction
 
-Doorsys was born from from the frustration with consumer grade smart locks.  I
+Doorsys was born from from the frustration with consumer grade smart locks. I
 needed something more reliable with centralized logs, multiple access codes and
 badges, and more importantly, remote management. After surveying the landscape,
 I came to the conclusion that either I settle for a subpar solution using an
@@ -38,7 +38,7 @@ No rocket science here. The esp32 is connected to a relay using gpio in order to
 operate the 12v based magnetic lock. A
 [wiegand](https://en.wikipedia.org/wiki/Wiegand_interface) keypad is also
 connected to the esp32 using 2 gpio ports. A 12v PSU with an external 12V
-battery was added for continuous operation in face of a power outage.  More
+battery was added for continuous operation in face of a power outage. More
 information, schematics, and PCB design can be found on the
 [doorsys-hardware](https://github.com/fabiojmendes/doorsys-hardware) repository.
 
@@ -113,15 +113,19 @@ On the backend, telegraf and influxdb are used to collect and store those metric
 A Grafana [dashboard](#tempsys-dashboard) is configured with alerts in case
 temperatures are sustained above certain threshold.
 
+On top of the temperature, the module will also send its current voltage and
+RSSI for observability purposes. This will help predict when it is time to
+change the battery or if the device needs to be moved for better reception.
+
 ### Repositories
 
 - [tempsys-hardware](https://github.com/fabiojmendes/tempsys-hardware) in-depth
   hardware description for the tempsys device
 - [tempsys-firmware](https://github.com/fabiojmendes/tempsys-firmware)
-embassy-rs based firmware for tempsys
+  embassy-rs based firmware for tempsys
 - [tempsys-scan](https://github.com/fabiojmendes/tempsys-scan) bluez based
-application to read the bluetooth advertizsing events from tempsys and ship them
-via mqtt
+  application to read the bluetooth advertizsing events from tempsys and ship them
+  via mqtt
 
 ### Block Diagram
 
