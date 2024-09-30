@@ -84,7 +84,7 @@ using mqtt messages using the [InfluxDB line protocol](https://docs.influxdata.c
 format. Telegraf is used to consume those messages and write to the InfluxDB
 instance while a grafana dashboard was setup for visualization.
 
-![Doorsys Dashboard](assets/doorsys-dashboard.png)
+![Doorsys Dashboard](./assets/doorsys-dashboard.png)
 
 ### Deployment
 
@@ -95,5 +95,38 @@ can then be deployed using docker or podman.
 
 ## Tempsys
 
-Tempsys is a temperature monitoring system designed to work with commercial
-fridges and freezers
+Tempsys is a monitoring system designed to measure the temperature
+of commercial fridges and freezers. It is meant to monitor the behaviour of
+these units and anticipate any possible failures or misuse and prevent food
+degradation.
+
+It consists of a extremely power efficient Bluetooth LE module coupled with a
+MCP9808 i2c digital thermometer. The whole system is powered by a single CR-2032
+coin cell battery with autonomy of more than a year.
+
+While the low power bluetooth module is responsible to emit advertising
+packets with the temperatures. A more powerful device connected to the main
+power will collect those results and ship them via mqtt using the line
+protocol as described earlier for doorsys.
+
+On the backend, telegraf and influxdb are used to collect and store those metrics.
+A Grafana [dashboard](#tempsys-dashboard) is configured with alerts in case
+temperatures are sustained above certain threshold.
+
+### Repositories
+
+- [tempsys-hardware](https://github.com/fabiojmendes/tempsys-hardware) in-depth
+  hardware description for the tempsys device
+- [tempsys-firmware](https://github.com/fabiojmendes/tempsys-firmware)
+embassy-rs based firmware for tempsys
+- [tempsys-scan](https://github.com/fabiojmendes/tempsys-scan) bluez based
+application to read the bluetooth advertizsing events from tempsys and ship them
+via mqtt
+
+### Block Diagram
+
+![Tempsys Block Diagram](./assets/tempsys-block.svg)
+
+### Tempsys Dashboard
+
+![Tempsys Dashboard](./assets/tempsys-dashboard.png)
