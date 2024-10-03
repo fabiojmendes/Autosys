@@ -23,7 +23,7 @@ and more importantly, remote management. After surveying the landscape, I came
 to the conclusion that either I settle for a subpar solution using an existing
 smart lock + app available on the marketplace, or I have to spend an arm and a
 leg and step up to a solution that is more professional. I did neither. I did
-what every engineer would. I'll roll my own! How difficult can it be... Famous
+what every engineer would. I'll roll my own! How difficult can it be… Famous
 last words :)
 
 Joke aside, I took it as a challenge. After some research, I figured the
@@ -33,6 +33,14 @@ firmware using C and the official
 [esp-idf](https://github.com/espressif/esp-idf) but later on switched to the
 experimental but now highly capable rust [esp-rs](https://github.com/esp-rs)
 implementation.
+
+### Relevant Repositories
+
+- [doorsys-hardware](https://github.com/fabiojmendes/doorsys-hardware)
+- [doorsys-firmware](https://github.com/fabiojmendes/doorsys-firmware)
+- [doorsys-protocol](https://github.com/fabiojmendes/doorsys-protocol)
+- [doorsys-api](https://github.com/fabiojmendes/doorsys-api)
+- [doorsys-web](https://github.com/fabiojmendes/doorsys-web)
 
 ### Hardware Description
 
