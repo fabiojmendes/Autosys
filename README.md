@@ -58,11 +58,11 @@ instance while a Grafana dashboard was set up for visualization.
 
 ### Deployment
 
-The firmware is meant to be flashed straight to the device. Over the air updates
-are not supported at the moment. The repository has more information and
-instructions on how to do this. Container images are provided for the API and
-web components which can then be deployed using docker or podman. Personally I
-run it using podman and quadlet units (systemd) but pick you poison.
+The firmware is meant to be flashed straight to the device. Check the repository
+for details. Over the air updates are not supported at the moment. Container
+images are provided for the API and WEB components, which can then be deployed
+using Docker or Podman. Personally I run it using Podman and Quadlet units
+(Systemd) but pick you poison.
 
 ## Tempsys
 
@@ -74,14 +74,12 @@ It consists of an extremely power efficient Bluetooth LE module coupled with a
 MCP9808 i2c digital thermometer. The whole system is powered by a single CR-2032
 coin cell battery with autonomy of more than a year.
 
-While the low power Bluetooth module is responsible to emit advertising packets
+The low power Bluetooth module is responsible for emitting advertising packets
 with the temperatures. A more powerful device connected to the main power will
-collect those results and ship them via MQTT using the line protocol as
-described earlier for Doorsys.
-
-On the backend, Telegraf and InfluxDB are used to collect and store those
-metrics. A Grafana [dashboard](#tempsys-dashboard) is configured with alerts in
-case temperatures are sustained above certain threshold.
+collect those results and send them using MQTT in the line protocol format. On
+the backend, Telegraf and InfluxDB are used to collect and store those metrics.
+A Grafana [dashboard](#tempsys-dashboard) is configured with alerts in case
+temperatures are sustained above certain threshold.
 
 On top of the temperature, the module will also send its current voltage and
 RSSI for observability purposes. This will help predict when it is time to
@@ -98,5 +96,7 @@ change the battery or if the device needs to be moved for better reception.
   them via MQTT
 
 ### Tempsys Dashboard
+
+Here is a sample of what the dashboard looks like:
 
 ![Tempsys Dashboard](./assets/tempsys-dashboard.png)
