@@ -2,8 +2,8 @@
 
 # Autosys
 
-Various automation related IoT projects using rust that communicate primarily
-using MQTT.
+Various automation-related IoT projects using Rust that communicate primarily
+via MQTT.
 
 ## Architecture
 
@@ -11,7 +11,7 @@ using MQTT.
 
 ## Doorsys
 
-Doorsys is a door access control system with centralized management and logs.
+Doorsys is a door access control system with centralized management and logging.
 
 ### Introduction
 
@@ -22,7 +22,7 @@ to the realization that the options weren't great. Either you settle for a
 subpar solution using one of the existing smart locks + app available on the
 marketplace, or you have to spend an arm and a leg and step up to a more
 professional solution. I did neither. I did what every engineer would do: roll
-my own solution! How difficult can it be right? Famous last words :)
+my own solution! How difficult can it be, right? Famous last words :)
 
 Jokes aside, I took it as a challenge. After some research, I figured the
 hardware necessary was readily available online, and an ESP32 microcontroller
@@ -51,8 +51,8 @@ the experimental yet highly capable rust based
 The firmware will constantly report heap and flash usage using MQTT messages
 using the
 [InfluxDB line protocol](https://docs.influxdata.com/influxdb/v1/write_protocols/line_protocol_tutorial/)
-format. Telegraf is used to consume those messages and write to the InfluxDB
-instance while a Grafana dashboard was set up for visualization.
+format. Telegraf is used to consume these messages and write them to the
+InfluxDB instance, while a Grafana dashboard has been set up for visualization.
 
 ![Doorsys Dashboard](./assets/doorsys-dashboard.png)
 
@@ -67,19 +67,20 @@ units (Systemd), but pick your poison.
 ## Tempsys
 
 Tempsys is a monitoring system designed to measure the temperature of commercial
-fridges and freezers. It is meant to monitor the behavior of these units and
-anticipate any possible failures or misuse and prevent food degradation.
+refrigerators and freezers. It is meant to monitor the behavior of these units
+and anticipate any possible failures or misuse, thereby preventing food
+degradation.
 
-It consists of an extremely power efficient Bluetooth LE module coupled with a
+It consists of an extremely power-efficient Bluetooth LE module coupled with a
 MCP9808 i2c digital thermometer. The whole system is powered by a single CR-2032
 coin cell battery with autonomy of more than a year.
 
-The low power Bluetooth module is responsible for emitting advertising packets
-with the temperatures. A more powerful device connected to the main power will
-collect those results and send them using MQTT in the line protocol format. On
+The low-power Bluetooth module is responsible for emitting advertising packets
+containing temperature data. A more powerful device connected to the main power
+will collect those results and send them using MQTT in line protocol format. On
 the backend, Telegraf and InfluxDB are used to collect and store those metrics.
 A Grafana [dashboard](#tempsys-dashboard) is configured with alerts in case
-temperatures are sustained above certain threshold.
+temperatures are sustained above a certain threshold.
 
 On top of the temperature, the module will also send its current voltage and
 RSSI for observability purposes. This will help predict when it is time to
