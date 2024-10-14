@@ -25,11 +25,11 @@ professional solution. I did neither. I did what every engineer would do: roll
 my own solution! How difficult can it be right? Famous last words :)
 
 Jokes aside, I took it as a challenge. After some research, I figured the
-hardware necessary was readily available online and an ESP32 microcontroller
+hardware necessary was readily available online, and an ESP32 microcontroller
 would be more than enough to run the firmware. I started the development of the
 firmware using C and the official
-[ESP-IDF](https://github.com/espressif/esp-idf) but later on switched to the
-experimental but now highly capable rust based
+[ESP-IDF](https://github.com/espressif/esp-idf) library but later on switched to
+the experimental yet highly capable rust based
 [ESP-RS](https://github.com/esp-rs) implementation.
 
 ### Relevant Repositories
@@ -58,11 +58,11 @@ instance while a Grafana dashboard was set up for visualization.
 
 ### Deployment
 
-The firmware is meant to be flashed straight to the device. Check the repository
-for details. Over the air updates are not supported at the moment. Container
-images are provided for the API and WEB components, which can then be deployed
-using Docker or Podman. Personally I run it using Podman and Quadlet units
-(Systemd) but pick you poison.
+The firmware is meant to be flashed straight onto the device. Check the
+repository for details. Over-the-air updates are not supported at this time.
+Container images are provided for the API and WEB components, which can then be
+deployed using Docker or Podman. Personally, I run it using Podman and Quadlet
+units (Systemd), but pick your poison.
 
 ## Tempsys
 
