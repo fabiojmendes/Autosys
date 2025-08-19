@@ -32,7 +32,7 @@ firmware using C and the official
 the experimental yet highly capable rust based
 [ESP-RS](https://github.com/esp-rs) implementation.
 
-### Relevant Repositories
+### Relevant repositories
 
 - [doorsys-hardware](https://github.com/fabiojmendes/doorsys-hardware): in depth
   hardware breakdown, schematics, and PCB design.
@@ -48,8 +48,8 @@ the experimental yet highly capable rust based
 
 ### Observability
 
-The firmware will constantly report heap and flash usage using MQTT messages
-using the
+The firmware constantly reports heap and flash usage, using MQTT messages in
+the
 [InfluxDB line protocol](https://docs.influxdata.com/influxdb/v1/write_protocols/line_protocol_tutorial/)
 format. Telegraf is used to consume these messages and write them to the
 InfluxDB instance, while a Grafana dashboard has been set up for visualization.
@@ -58,7 +58,7 @@ InfluxDB instance, while a Grafana dashboard has been set up for visualization.
 
 ### Deployment
 
-The firmware is meant to be flashed straight onto the device. Check the
+The firmware is meant to be flashed directly onto the device. Check the
 repository for details. Over-the-air updates are not supported at this time.
 Container images are provided for the API and WEB components, which can then be
 deployed using Docker or Podman. Personally, I run it using Podman and Quadlet
@@ -77,14 +77,14 @@ coin cell battery with autonomy of more than a year.
 
 The low-power Bluetooth module is responsible for emitting advertising packets
 containing temperature data. A more powerful device connected to the main power
-will collect those results and send them using MQTT in line protocol format. On
-the backend, Telegraf and InfluxDB are used to collect and store those metrics.
-A Grafana [dashboard](#tempsys-dashboard) is configured with alerts in case
+collects those results and send them using MQTT in line protocol format. On the
+backend, Telegraf and InfluxDB are used to collect and store those metrics. A
+Grafana [dashboard](#tempsys-dashboard) is configured with alerts in case
 temperatures are sustained above a certain threshold.
 
-On top of the temperature, the module will also send its current voltage and
-RSSI for observability purposes. This will help predict when it is time to
-change the battery or if the device needs to be moved for better reception.
+On top of the temperature, the module also sends its current voltage and RSSI
+for observability purposes. This helps predict when it is time to change the
+battery or if the device needs to be moved for better reception.
 
 ### Repositories
 
@@ -96,7 +96,7 @@ change the battery or if the device needs to be moved for better reception.
   application to read the Bluetooth advertising events from Tempsys and ship
   them via MQTT
 
-### Tempsys Dashboard
+### Tempsys dashboard
 
 Here is a sample of what the dashboard looks like:
 
